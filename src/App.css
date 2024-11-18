@@ -1,3 +1,44 @@
+/* Définir les polices */
+@font-face {
+  font-family: 'SF Rounded Heavy';
+  src: url('./assets/fonts/FontsFree-Net-SF-Pro-Rounded-Heavy.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/FontsFree-Net-Poppins-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Styles globaux */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #121212; /* Mode sombre */
+  color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Appliquer 'SF Rounded Heavy' aux titres */
+h1 {
+  font-family: 'SF Rounded Heavy', sans-serif;
+}
+
+/* Appliquer 'Poppins' aux boutons */
+button {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Appliquer 'Poppins' aux zones de texte */
+textarea {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Styles existants */
 .App {
   text-align: center;
 }
