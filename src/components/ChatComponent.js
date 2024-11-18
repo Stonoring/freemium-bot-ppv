@@ -50,13 +50,24 @@ function ChatComponent() {
   }, []);
 
   const formatResponse = useCallback((text) => {
-    return text.split(/(##.*?(\n|$))/g).map((part, index) => {
-      if (part.startsWith('##')) {
-        return <strong key={index}>{part.slice(2).trim()}</strong>; // Supprime les "##" et applique <strong>
+    // Divise le texte en parties avec différentes délimitations
+    return text.split(/(\*\*.*?\*\*|\*.*?\*|# .+(\n|$)|##.+(\n|$))/g).map((part, index) => {
+      if (typeof part === 'string') {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return <strong key={index}>{part.slice(2, -2).trim()}</strong>; // Supprime les "**" et applique <strong>
+        } else if (part.startsWith('*') && part.endsWith('*')) {
+          return <em key={index}>{part.slice(1, -1).trim()}</em>; // Supprime les "*" et applique <em>
+        } else if (part.startsWith('# ')) {
+          return <strong key={index}>{part.slice(2).trim()}</strong>; // Supprime le "# " et applique <strong>
+        } else if (part.startsWith('##')) {
+          return <strong key={index}>{part.slice(2).trim()}</strong>; // Supprime les "##" et applique <strong>
+        }
+        return <span key={index}>{part}</span>; // Retourne le texte inchangé
       }
-      return part; // Retourne le texte inchangé
+      return null; // S'il ne s'agit pas d'une chaîne, on retourne null
     });
   }, []);
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#121212] text-white p-6">
       <div className="flex flex-col items-center justify-center w-full max-w-full space-y-12">
